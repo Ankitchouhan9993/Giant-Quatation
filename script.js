@@ -3,8 +3,6 @@ function printDocument(){
     const backup=document.body.innerHTML;
     document.body.innerHTML=`<main>${document.querySelector("main").innerHTML}</main>`;
     window.print();
-    document.body.innerHTML=backup;
-    document.querySelector('.btn').firstChild.addEventListener('click',printDocument);
 }
 f.addEventListener('submit',(e)=>{
     e.preventDefault();
