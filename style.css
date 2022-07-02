@@ -144,7 +144,7 @@ div.form h2{
 
 @media only screen and (max-width:600px){
     *{
-        background-color: aqua;
+        
         box-sizing: border-box;
     }
     main{
