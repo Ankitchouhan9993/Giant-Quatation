@@ -1,15 +1,26 @@
-console.log('hello');
 const f= document.getElementById("data");
+function printDocument(){
+    const backup=document.body.innerHTML;
+    document.body.innerHTML=`<main>${document.querySelector("main").innerHTML}</main>`;
+    window.print();
+    document.body.innerHTML=backup;
+    document.querySelector('.btn').firstChild.addEventListener('click',printDocument);
+}
 f.addEventListener('submit',(e)=>{
     e.preventDefault();
-    console.log("clicked");
     const ab=document.getElementById("browser").value;
     const name=document.getElementById('name').value;
     const add=document.getElementById("address").value;
     const feet=document.getElementById("feet").value;
     const rate=document.getElementById('rate').value;
     const date= new Date();
-    console.log(date);
+    const print =document.createElement('button');
+    print.classList.add('button');
+    print.textContent='print';
+    const btnsection= document.querySelector('.btn');
+    btnsection.innerHTML="";
+    btnsection.appendChild(print);
+    print.addEventListener('click',printDocument);
     document.querySelector("main").innerHTML=`
     <div class="logo"><img src="logo.jpg" alt=""></div>
 <h2 class="company-name">
@@ -17,7 +28,7 @@ Giant Waterproofing Co.
 </h2>
 <div class="reg-date">
     <div class="reg-num">GWC/R/16776/2022</div>
-    <div class="date"><span class="dd">${(date.getDate()<10)?'0'+date.getDate():date.getDate()}</span>.<span class="mm">${((date.getMonth()+1)<10)?('0'+(date.getMonth()+1)):(date.getMonth()+1)}</span>.<span class="yyyy">${date.getFullYear()}</span></div>
+    <div class="date"><span class="dd">${(date.getDate()<10)?'0'+date.getDate():date.getDate()}</span>.<span class="mm">${((date.getMonth()+1)<10)?'0'+(date.getMonth()+1):date.getMonth()+1}</span>.<span class="yyyy">${date.getFullYear()}</span></div>
 </div>
 <div class="name-add">
     <h3 class="name">${ab+' '+name}</h2>
@@ -124,7 +135,7 @@ Giant Waterproofing Co.
 <h3 style="color: red; margin: 50px 0; ">Note:</h3>
 <p style="border:1px solid red; padding:15px;">All details provided by candidate via tele-communication is considered in this document. If any changes found while measuring area on site, then that area will be considered in contract and amount will changed accordingly.</p>
 <h3 style="margin-top: 40px; text-align:center;">Product for Terrace Waterproofing
-    Area <span class="total">${feet}</span>sq.ft (Approx.)
+    Area <span class="total">${feet*rate}</span>.ft (Approx.)
 </h3>
 <table border="1">
     <thead>
